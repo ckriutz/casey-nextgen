@@ -43,7 +43,7 @@
 					<!--<div class="title">The Introduction</div>-->
 					<div class="container">
 						<p class="style1">I'm a passionate software engineer - something I've been doing for over 17 years now.</p>
-						<p class="style2">
+						<p id="quote" class="style2">
 						  [quote goes here]
 						</p>
           </div>
@@ -134,4 +134,10 @@
 
 		</div>
 	</body>
+  <script>
+    (async function() {
+        const { text } = await( await fetch('/api/HttpQuote')).json();
+        document.querySelector('#quote').textContent = text;
+    }())
+  </script>
 </html>

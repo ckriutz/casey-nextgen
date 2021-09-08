@@ -2221,15 +2221,14 @@ input, select, textarea {
 		}
 
 		#intro p.style2 {
-			font-weight: 700;
+			font-weight: 500;
 			color: #fff;
-			border-radius: 0.35em;
-			box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.25);
-			font-size: 2.75em;
+			/*border-radius: 0.35em;
+			box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.25);*/
+			font-size: 2.25em;
 			letter-spacing: 0.075em;
 			line-height: 1.35em;
-			padding: 1em 0 1em 0;
-			margin-bottom: 1em;
+			margin-bottom: .25em;
 		}
 
 			#intro p.style2 a {
@@ -2241,6 +2240,18 @@ input, select, textarea {
 			font-size: 1.1em;
 			width: 48em;
 			margin: 0 auto;
+		}
+
+		#intro p.authorStyle {
+			font-size: 1.75em;
+			letter-spacing: 0.075em;
+			margin-bottom: .25em;
+		}
+
+		#intro div.boxstyle {
+			border-radius: 0.35em;
+			box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.25);
+			padding: 1em 0 1em 0;
 		}
 
 /* Features */

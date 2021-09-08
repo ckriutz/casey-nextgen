@@ -43,9 +43,10 @@
 					<!--<div class="title">The Introduction</div>-->
 					<div class="container">
 						<p class="style1">I'm a passionate software engineer - something I've been doing for over 17 years now.</p>
-						<p id="quote" class="style2">
-						  [quote goes here]
-						</p>
+						<div class="boxstyle">
+              <p class="style2" id="quote">[quote goes here]</p>
+              <p class="authorStyle" id="author">Author</p>
+          </div>
           </div>
           </section>
 
@@ -93,7 +94,7 @@
 										</div>
 										<div class="col-6 col-12-medium">
 											<section>
-												<h3><a herf="https://devblogs.microsoft.com/premier-developer/how-microsoft-tracks-santa/">How Microsoft Tracks Santa</a></h3>
+												<h3><a href="https://devblogs.microsoft.com/premier-developer/how-microsoft-tracks-santa/">How Microsoft Tracks Santa</a></h3>
 												<p>I'm a big part of the Santa team. Here is how Microsoft Tracks Santa.</p>
 											</section>
 										</div>
@@ -136,8 +137,10 @@
 	</body>
   <script>
     (async function() {
-        const { text } = await( await fetch('/api/HttpQuote')).json();
-        document.querySelector('#quote').textContent = text;
+        const quote = await(await fetch('http://localhost:7071/api/HttpQuote')).json();
+        console.log(quote.quote);
+        document.querySelector('#quote').textContent = quote.quote;
+        document.querySelector('#author').textContent = "- " + quote.author;
     }())
   </script>
 </html>

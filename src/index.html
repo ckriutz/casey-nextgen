@@ -137,7 +137,7 @@
 	</body>
   <script>
     (async function() {
-        const quote = await(await fetch('https://delightful-stone-025c5a610.azurestaticapps.net/')).json();
+        const quote = await(await fetch('https://delightful-stone-025c5a610.azurestaticapps.net/api/HttpQuote')).json();
         console.log(quote.quote);
         document.querySelector('#quote').textContent = quote.quote;
         document.querySelector('#author').textContent = "- " + quote.author;

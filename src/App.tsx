@@ -1,32 +1,24 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
+import { About } from "@/components/about"
 import { Certifications } from "@/components/certifications"
 import { Articles } from "@/components/articles"
 import { Footer } from "@/components/footer"
 
-const sectionStubs = [
-  {
-    id: "about",
-    eyebrow: "About",
-    title: "A quick introduction",
-    body:
-      "This section will become the main overview of who Casey is, what he focuses on, and the kinds of consulting work he does best. For now, this placeholder gives the page enough depth to preview spacing, typography, and how the single-page navigation feels in practice.",
-  },
-  {
-    id: "contact",
-    eyebrow: "Contact",
-    title: "Start a conversation",
-    body:
-      "This block will eventually become your real contact area with email, social links, and a clear call to action. For now, it shows how the final section anchors into place when someone clicks Contact or the Let's Talk button in the navigation.",
-  },
-] as const
+const contactStub = {
+  id: "contact",
+  eyebrow: "Contact",
+  title: "Start a conversation",
+  body:
+    "This block will eventually become your real contact area with email, social links, and a clear call to action. For now, it shows how the final section anchors into place when someone clicks Contact or the Let's Talk button in the navigation.",
+} as const
 
 function SectionStub({
   id,
   eyebrow,
   title,
   body,
-}: (typeof sectionStubs)[number]) {
+}: typeof contactStub) {
   return (
     <section
       id={id}
@@ -50,22 +42,15 @@ function SectionStub({
 }
 
 function App() {
-  const beforeArticles = sectionStubs.filter((s) => s.id === "about")
-  const afterArticles = sectionStubs.filter((s) => s.id === "contact")
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
         <Hero />
-        {beforeArticles.map((section) => (
-          <SectionStub key={section.id} {...section} />
-        ))}
+        <About />
         <Certifications />
         <Articles />
-        {afterArticles.map((section) => (
-          <SectionStub key={section.id} {...section} />
-        ))}
+        <SectionStub {...contactStub} />
       </main>
       <Footer />
     </div>

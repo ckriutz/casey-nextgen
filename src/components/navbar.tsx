@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FileText, Mail, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
@@ -6,6 +6,41 @@ import { cn } from "@/lib/utils"
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("#home")
+
+  useEffect(() => {
+    const sectionIds = siteConfig.nav.map((item) => item.href.replace("#", ""))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null)
+
+    if (window.location.hash && siteConfig.nav.some((item) => item.href === window.location.hash)) {
+      setActiveSection(window.location.hash)
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+
+        if (visibleEntries[0]?.target.id) {
+          setActiveSection(`#${visibleEntries[0].target.id}`)
+        }
+      },
+      {
+        rootMargin: "-25% 0px -60% 0px",
+        threshold: [0.1, 0.25, 0.5, 0.75],
+      }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section))
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -22,13 +57,14 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex">
-          {siteConfig.nav.map((item, i) => (
+          {siteConfig.nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
+              onClick={() => setActiveSection(item.href)}
               className={cn(
                 "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-foreground",
-                i === 0
+                activeSection === item.href
                   ? "bg-muted text-foreground"
                   : "text-muted-foreground"
               )}
@@ -72,8 +108,16 @@ export function Navbar() {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                onClick={() => {
+                  setActiveSection(item.href)
+                  setOpen(false)
+                }}
+                className={cn(
+                  "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-foreground",
+                  activeSection === item.href
+                    ? "bg-muted text-foreground"
+                    : "text-muted-foreground"
+                )}
               >
                 {item.label}
               </a>

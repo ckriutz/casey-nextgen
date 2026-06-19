@@ -20,6 +20,31 @@ export const siteConfig = {
     github: "https://github.com/ckriutz",
     twitter: "https://twitter.com/ckriutzfield",
   },
+  footer: {
+    description:
+      "From AI consulting to software delivery, I help turn ideas into practical systems, clear roadmaps, and useful products.",
+    contact: {
+      label: "Let's Talk",
+      href: "#contact",
+    },
+    resources: [
+      {
+        label: "Resume",
+        href: "#home",
+        external: false,
+      },
+      {
+        label: "GitHub",
+        href: "https://github.com/ckriutz",
+        external: true,
+      },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/caseykriutzfield",
+        external: true,
+      },
+    ],
+  },
 }
 
 export type SiteConfig = typeof siteConfig

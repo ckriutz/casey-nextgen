@@ -6,17 +6,22 @@ import { cn } from "@/lib/utils"
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState("#home")
+  const [activeSection, setActiveSection] = useState(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.location.hash &&
+      siteConfig.nav.some((item) => item.href === window.location.hash)
+    ) {
+      return window.location.hash
+    }
+    return "#home"
+  })
 
   useEffect(() => {
     const sectionIds = siteConfig.nav.map((item) => item.href.replace("#", ""))
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => section !== null)
-
-    if (window.location.hash && siteConfig.nav.some((item) => item.href === window.location.hash)) {
-      setActiveSection(window.location.hash)
-    }
 
     const observer = new IntersectionObserver(
       (entries) => {

@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react"
 
 interface Certification {
   title: string
-  level: "Associate" | "Expert"
+  level: "Associate" | "Expert" | "Fundamentals"
   badge: string
   href: string
 }
@@ -25,6 +25,12 @@ const certifications: Certification[] = [
     level: "Associate",
     badge: "/badges/associate.svg",
     href: "https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/",
+  },
+  {
+    title: "Microsoft Certified: Azure AI Fundamentals",
+    level: "Fundamentals",
+    badge: "/badges/fundamentals.svg",
+    href: "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/",
   },
 ]
 

@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
+import { Certifications } from "@/components/certifications"
 import { Articles } from "@/components/articles"
 import { Footer } from "@/components/footer"
 
@@ -10,13 +11,6 @@ const sectionStubs = [
     title: "A quick introduction",
     body:
       "This section will become the main overview of who Casey is, what he focuses on, and the kinds of consulting work he does best. For now, this placeholder gives the page enough depth to preview spacing, typography, and how the single-page navigation feels in practice.",
-  },
-  {
-    id: "certifications",
-    eyebrow: "Certifications",
-    title: "Credentials and learning",
-    body:
-      "This area is ready for cloud, AI, architecture, and security certifications. We can turn this into a grid of credential cards, badges, issue dates, and links once you decide which certifications you want highlighted on the live site.",
   },
   {
     id: "contact",
@@ -56,9 +50,7 @@ function SectionStub({
 }
 
 function App() {
-  const beforeArticles = sectionStubs.filter(
-    (s) => s.id === "about" || s.id === "certifications"
-  )
+  const beforeArticles = sectionStubs.filter((s) => s.id === "about")
   const afterArticles = sectionStubs.filter((s) => s.id === "contact")
 
   return (
@@ -69,6 +61,7 @@ function App() {
         {beforeArticles.map((section) => (
           <SectionStub key={section.id} {...section} />
         ))}
+        <Certifications />
         <Articles />
         {afterArticles.map((section) => (
           <SectionStub key={section.id} {...section} />

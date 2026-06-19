@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
+import { Articles } from "@/components/articles"
 import { Footer } from "@/components/footer"
 
 const sectionStubs = [
@@ -16,13 +17,6 @@ const sectionStubs = [
     title: "Credentials and learning",
     body:
       "This area is ready for cloud, AI, architecture, and security certifications. We can turn this into a grid of credential cards, badges, issue dates, and links once you decide which certifications you want highlighted on the live site.",
-  },
-  {
-    id: "articles",
-    eyebrow: "Articles",
-    title: "Writing and ideas",
-    body:
-      "This section is a stub for future articles, essays, and thought leadership content. It is a good place for posts about applied AI, delivery strategy, architecture decisions, product thinking, or even the other '-ics' you mentioned in your intro.",
   },
   {
     id: "contact",
@@ -62,12 +56,21 @@ function SectionStub({
 }
 
 function App() {
+  const beforeArticles = sectionStubs.filter(
+    (s) => s.id === "about" || s.id === "certifications"
+  )
+  const afterArticles = sectionStubs.filter((s) => s.id === "contact")
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
         <Hero />
-        {sectionStubs.map((section) => (
+        {beforeArticles.map((section) => (
+          <SectionStub key={section.id} {...section} />
+        ))}
+        <Articles />
+        {afterArticles.map((section) => (
           <SectionStub key={section.id} {...section} />
         ))}
       </main>

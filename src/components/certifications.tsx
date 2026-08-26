@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react"
 
 interface Certification {
   title: string
-  level: "Associate" | "Expert" | "Fundamentals"
+  level: "Associate" | "Expert" | "Fundamentals" | "Foundations" | "Certification"
   badge: string
   href: string
 }
@@ -31,6 +31,18 @@ const certifications: Certification[] = [
     level: "Fundamentals",
     badge: "/badges/fundamentals.svg",
     href: "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/",
+  },
+  {
+    title: "GitHub Foundations",
+    level: "Foundations",
+    badge: "/badges/github-foundations.png",
+    href: "https://www.credly.com/earner/earned/badge/d55974af-907b-4fde-aea3-3de0c8fc031f",
+  },
+  {
+    title: "GitHub Copilot",
+    level: "Certification",
+    badge: "/badges/github-copilot.png",
+    href: "https://www.credly.com/earner/earned/badge/8d5cda46-692b-43f2-bafb-4ec2007f6437",
   },
 ]
 
@@ -80,7 +92,7 @@ export function Certifications() {
           Credentials &amp; learning
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-8 text-muted-foreground sm:text-lg">
-          Current Microsoft Azure certifications — architecture, AI, and cloud administration.
+          Current Microsoft Azure and GitHub certifications — architecture, AI, cloud administration, and developer tools.
         </p>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
